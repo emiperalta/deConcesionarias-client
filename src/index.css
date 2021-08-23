@@ -1,12 +1,70 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+body {
   font-family: -apple-system, 'Source Sans Pro', BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+    'Helvetica Neue', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+input {
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 1.3rem !important;
+  outline: none;
+  padding: 10px;
+  transition: border-bottom 0.2s ease;
+  width: 100%;
+}
+.input-field:focus {
+  border-bottom: 3px solid #f63 !important;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+fieldset {
+  border-radius: 3px;
+  border: 1px solid #ccc !important;
+  margin: 10px 0 !important;
+  padding: 5px;
+}
+
+legend {
+  border: auto !important;
+  color: #818181 !important;
+  font-size: inherit !important;
+  margin-bottom: 0 !important;
+  padding: 0 5px !important;
+  width: auto !important;
+}
+
+button {
+  font-size: 1.2rem !important;
+  margin-top: 1rem !important;
+  padding: 10px 15px !important;
+  width: 99%;
+}
+
+.btn-dec {
+  background-color: #f63 !important;
+  color: #fff !important;
+  transition: background-color 0.3s ease;
+}
+.btn-dec:hover {
+  background-color: #ff7e53 !important;
+}
+.btn-dec:active {
+  background-color: #ff5a23 !important;
+}
+.btn-dec:focus {
+  box-shadow: none !important;
 }
