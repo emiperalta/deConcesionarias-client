@@ -1,0 +1,14 @@
+.vehicle-container {
+  padding: 10px !important;
+}
+
+.vehicle-container table {
+  margin: 0 auto;
+  max-width: 500px !important;
+}
+
+.vehicle-list-title {
+  font-weight: 600;
+  padding-bottom: 0.8rem;
+  text-align: center;
+}
