@@ -1,0 +1,21 @@
+.vehicle-form {
+  margin: 0 auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.vehicle-form input {
+  padding-bottom: 10px;
+}
+
+.vehicle-form-title {
+  font-weight: 600;
+  padding-bottom: 0.8rem;
+  text-align: center;
+}
+
+.actions {
+  width: 100% !important;
+  text-align: center;
+}
