@@ -1,0 +1,8 @@
+.layout-container {
+  height: 100vh;
+}
+
+.page {
+  min-height: 130%;
+  padding: 10px;
+}
