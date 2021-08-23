@@ -1,0 +1,14 @@
+.property-container {
+  padding: 10px !important;
+}
+
+.property-container table {
+  margin: 0 auto;
+  max-width: 500px !important;
+}
+
+.property-list-title {
+  font-weight: 600;
+  padding-bottom: 0.8rem;
+  text-align: center;
+}
