@@ -24,7 +24,7 @@ export default function VehicleList() {
   return (
     <div className='property-container'>
       <h1 className='property-list-title'>Listado de propiedades de vehículos</h1>
-      <Table className='text-center' responsive bordered hover size='sm'>
+      <Table bordered className='text-center' hover responsive>
         <thead>
           <tr>
             <th>Nombre</th>
