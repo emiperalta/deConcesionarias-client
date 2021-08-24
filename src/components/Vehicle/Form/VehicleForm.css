@@ -13,6 +13,9 @@
   font-weight: 600;
   padding-bottom: 0.8rem;
   text-align: center;
+  margin: 8px auto;
+
+  max-width: 500px !important;
 }
 
 .actions {

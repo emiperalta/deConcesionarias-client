@@ -1,5 +1,9 @@
 .property-container {
   padding: 10px !important;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 10px !important;
+  width: 100%;
 }
 
 .property-container table {
