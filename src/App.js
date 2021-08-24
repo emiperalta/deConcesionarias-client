@@ -1,7 +1,15 @@
+import { Route } from 'wouter';
+
+import { PropertyContextProvider } from 'context/PropertyContext';
+
+import VehiclePage from 'pages/Vehicle';
+import PropertyPage from 'pages/Property';
+
 export default function App() {
   return (
-    <div>
-      <p>app component</p>
-    </div>
+    <PropertyContextProvider>
+      <Route path='/vehicles' component={VehiclePage} />
+      <Route path='/properties' component={PropertyPage} />
+    </PropertyContextProvider>
   );
 }
