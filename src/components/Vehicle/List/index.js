@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import { ImEye } from 'react-icons/im';
 
 import vehiclesApi from 'services/vehiclesApi';
 
@@ -21,7 +22,7 @@ export default function VehicleList() {
   return (
     <div className='vehicle-container'>
       <h1 className='vehicle-list-title'>Listado de vehículos</h1>
-      <Table className='text-center' responsive bordered hover size='sm'>
+      <Table bordered className='text-center' hover responsive>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -34,7 +35,7 @@ export default function VehicleList() {
               <tr key={v.id}>
                 <td>{v.name}</td>
                 <td>
-                  <FaEdit /> <MdDelete />
+                  <FaEdit /> <MdDelete /> <ImEye />
                 </td>
               </tr>
             ))
