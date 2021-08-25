@@ -1,25 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 
-import PropertyContext from 'context/PropertyContext';
-
-// import propertyApi from 'services/propertyApi';
+import useProperty from 'hooks/useProperty';
 
 import './PropertyList.css';
 
-export default function VehicleList() {
-  const { properties } = useContext(PropertyContext);
-  // const [properties, setProperties] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await propertyApi.getAllProperties();
-  //     setProperties(data);
-  //   };
-  //   fetchData();
-  // }, []);
+export default function PropertyList({ properties, setCurrentId }) {
+  const { deleteOne } = useProperty();
 
   return (
     <div className='property-container'>
@@ -37,7 +25,8 @@ export default function VehicleList() {
               <tr key={p.id}>
                 <td>{p.name}</td>
                 <td>
-                  <FaEdit /> <MdDelete />
+                  <FaEdit onClick={() => setCurrentId(p.id)} />
+                  <MdDelete onClick={() => deleteOne(p.id)} />
                 </td>
               </tr>
             ))
