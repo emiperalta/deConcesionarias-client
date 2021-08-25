@@ -1,8 +1,8 @@
-import useProperty from 'hooks/useProperty';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-import categoryApi from 'services/categoryApi';
+import useProperty from 'hooks/useProperty';
+import useCategory from 'hooks/useCategory';
 
 import style from 'utils/select-styles';
 
@@ -11,8 +11,8 @@ import './PropertyForm.css';
 export default function PropertyForm({ currentId, setCurrentId }) {
   const [name, setName] = useState('');
   const [category, setCategory] = useState(null);
-  const [categories, setCategories] = useState([]);
 
+  const { categories } = useCategory();
   const { createOne, properties, updateOne } = useProperty();
 
   const actualProperty = currentId ? properties.find(p => p.id === currentId) : null;
@@ -26,16 +26,6 @@ export default function PropertyForm({ currentId, setCurrentId }) {
       });
     }
   }, [actualProperty]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const data = await categoryApi.getAllCategories();
-      setCategories(
-        data.map(category => ({ value: category.id, label: category.name }))
-      );
-    };
-    fetchCategories();
-  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
