@@ -5,6 +5,49 @@ const getAllProperties = async () => {
   return await res.json();
 };
 
-const propertyApi = { getAllProperties };
+const getOneProperty = async id => {
+  const res = await fetch(`${baseUrl}/vehicle-properties/${id}`);
+  return await res.json();
+};
+
+const createProperty = async data => {
+  const res = await fetch(`${baseUrl}/vehicle-properties`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return await res.json();
+};
+
+const updateProperty = async (id, data) => {
+  const res = await fetch(`${baseUrl}/vehicle-properties/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return await res.json();
+};
+
+const deleteProperty = async id => {
+  const res = await fetch(`${baseUrl}/vehicle-properties/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return await res.json();
+};
+
+const propertyApi = {
+  createProperty,
+  deleteProperty,
+  getAllProperties,
+  getOneProperty,
+  updateProperty,
+};
 
 export default propertyApi;
