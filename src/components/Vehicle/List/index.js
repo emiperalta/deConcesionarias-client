@@ -1,23 +1,14 @@
-import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { ImEye } from 'react-icons/im';
 
-import vehiclesApi from 'services/vehiclesApi';
+import useVehicle from 'hooks/useVehicle';
 
 import './VehicleList.css';
 
-export default function VehicleList() {
-  const [vehicles, setVehicles] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await vehiclesApi.getAllVehicles();
-      setVehicles(data);
-    };
-    fetchData();
-  }, []);
+export default function VehicleList({ setCurrentId, vehicles }) {
+  const { deleteOne } = useVehicle();
 
   return (
     <div className='vehicle-container'>
@@ -35,7 +26,9 @@ export default function VehicleList() {
               <tr key={v.id}>
                 <td>{v.name}</td>
                 <td>
-                  <FaEdit /> <MdDelete /> <ImEye />
+                  <FaEdit onClick={() => setCurrentId(v.id)} />
+                  <MdDelete onClick={() => deleteOne(v.id)} />
+                  <ImEye />
                 </td>
               </tr>
             ))
