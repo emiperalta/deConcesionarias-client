@@ -1,21 +1,13 @@
-import { createContext, useEffect, useState } from 'react';
-import propertyApi from 'services/propertyApi';
+import { createContext, useState } from 'react';
 
 const Context = createContext();
 
 export const PropertyContextProvider = ({ children }) => {
   const [properties, setProperties] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await propertyApi.getAllProperties();
-      setProperties(data);
-    };
-    fetchData();
-  }, []);
+  const [currentId, setCurrentId] = useState(null);
 
   return (
-    <Context.Provider value={{ properties, setProperties }}>
+    <Context.Provider value={{ properties, setProperties, currentId, setCurrentId }}>
       {children}
     </Context.Provider>
   );
