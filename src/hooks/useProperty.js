@@ -23,7 +23,6 @@ export default function useProperty() {
 
   const updateOne = async (id, data) => {
     const res = await propertyApi.updateProperty(id, data);
-    console.log(res);
     setProperties([...properties.map(p => (p.id === id ? res : p))]);
   };
 
