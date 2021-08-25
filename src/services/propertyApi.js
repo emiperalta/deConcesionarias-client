@@ -33,13 +33,12 @@ const updateProperty = async (id, data) => {
 };
 
 const deleteProperty = async id => {
-  const res = await fetch(`${baseUrl}/vehicle-properties/${id}`, {
+  return await fetch(`${baseUrl}/vehicle-properties/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  return await res.json();
 };
 
 const propertyApi = {
