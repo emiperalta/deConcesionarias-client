@@ -1,4 +1,6 @@
 import { Container } from 'react-bootstrap';
+import { Link } from 'wouter';
+import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
 
 import useCategory from 'hooks/useCategory';
 
@@ -30,12 +32,17 @@ export default function VehicleDetails({ vehicle }) {
       <Container className='vehicle-details'>
         {Object.keys(vehicle).length &&
           vehicle.VehicleProperties.map((v, index) => (
-            <section key={v.id}>
+            <section key={v.id} className='vehicle-properties-detail'>
               <span>{v.name}</span>
-              <span>{v.PropertyValue.value}</span>
+              <span>{v.PropertyValue.value} stars</span>
             </section>
           ))}
       </Container>
+      <div className='container back-arrow'>
+        <Link to='/vehicles'>
+          <FaRegArrowAltCircleLeft />
+        </Link>
+      </div>
     </Container>
   );
 }

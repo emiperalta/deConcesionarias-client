@@ -5,6 +5,17 @@
   width: 98% !important;
 }
 
+.vehicle-properties-detail span {
+  padding-right: 20px;
+}
+
+.back-arrow {
+  font-size: 4rem;
+}
+.back-arrow svg {
+  cursor: pointer;
+}
+
 .card {
   border: none !important;
 }
