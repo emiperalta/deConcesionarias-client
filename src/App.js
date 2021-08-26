@@ -4,6 +4,7 @@ import { PropertyContextProvider } from 'context/PropertyContext';
 import { VehiclesContextProvider } from 'context/VehicleContext';
 
 import VehiclePage from 'pages/Vehicle';
+import VehicleDetailsPage from 'pages/VehicleDetails';
 import PropertyPage from 'pages/Property';
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
     <PropertyContextProvider>
       <VehiclesContextProvider>
         <Route path='/vehicles' component={VehiclePage} />
+        <Route path='/vehicles/:id' component={VehicleDetailsPage} />
         <Route path='/properties' component={PropertyPage} />
       </VehiclesContextProvider>
     </PropertyContextProvider>
