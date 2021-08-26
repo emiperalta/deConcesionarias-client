@@ -21,7 +21,6 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
 
   useEffect(() => {
     if (actualVehicle) {
-      console.log(actualVehicle);
       setName(actualVehicle.name);
       setVehicleProperties(
         actualVehicle.VehicleProperties.map(vp => ({ value: vp.id, label: vp.name }))
