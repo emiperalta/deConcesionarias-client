@@ -1,3 +1,4 @@
+import { Link } from 'wouter';
 import Table from 'react-bootstrap/Table';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -25,10 +26,12 @@ export default function VehicleList({ setCurrentId, vehicles }) {
             vehicles.map(v => (
               <tr key={v.id}>
                 <td>{v.name}</td>
-                <td>
+                <td className='vehicle-actions'>
                   <FaEdit onClick={() => setCurrentId(v.id)} />
                   <MdDelete onClick={() => deleteOne(v.id)} />
-                  <ImEye />
+                  <Link to={`/vehicles/${v.id}`}>
+                    <ImEye />
+                  </Link>
                 </td>
               </tr>
             ))

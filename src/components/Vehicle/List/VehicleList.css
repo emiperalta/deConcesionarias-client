@@ -16,3 +16,15 @@
   padding-bottom: 0.8rem;
   text-align: center;
 }
+
+.vehicle-actions svg {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 0 8px;
+}
+
+@media screen and (min-width: 400px) {
+  .vehicle-actions svg {
+    font-size: 1.5rem;
+  }
+}

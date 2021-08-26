@@ -24,7 +24,7 @@ export default function PropertyList({ properties, setCurrentId }) {
             properties.map(p => (
               <tr key={p.id}>
                 <td>{p.name}</td>
-                <td>
+                <td className='property-actions'>
                   <FaEdit onClick={() => setCurrentId(p.id)} />
                   <MdDelete onClick={() => deleteOne(p.id)} />
                 </td>
