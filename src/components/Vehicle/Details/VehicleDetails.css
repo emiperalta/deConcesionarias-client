@@ -1,0 +1,62 @@
+.vehicle-details {
+  border: 1px solid #f63;
+  border-radius: 10px;
+  padding: 10px !important;
+  width: 98% !important;
+}
+
+.card {
+  border: none !important;
+}
+
+.card-body {
+  background-color: #f63;
+  border-radius: 10px;
+  padding: 5px 5px 1px 5px !important;
+}
+
+.nav {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 150px;
+}
+
+.nav-item {
+  align-items: center !important;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex !important;
+  font-size: 0.9rem;
+  height: 120px;
+  justify-content: center !important;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  width: 200px;
+}
+.nav-item:hover {
+  background-color: rgb(255, 139, 101);
+}
+
+.nav-item img {
+  width: 25px;
+  height: 25px;
+}
+
+.nav-item span {
+  margin-top: 10px;
+}
+
+.categories-header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav-link {
+  font-size: 14px;
+  text-align: center;
+}
