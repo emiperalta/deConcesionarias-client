@@ -4,6 +4,8 @@ import makeAnimated from 'react-select/animated';
 
 import useVehicle from 'hooks/useVehicle';
 
+import { validateVehicleInput } from 'validation/inputValidation';
+
 import style from 'utils/select-styles';
 
 import './VehicleForm.css';
@@ -14,6 +16,7 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
   const [name, setName] = useState('');
   const [vehicleProperties, setVehicleProperties] = useState([]);
   const [options, setOptions] = useState([]);
+  const [error, setError] = useState();
 
   const { createOne, vehicles, updateOne } = useVehicle();
 
@@ -34,14 +37,25 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
     }
   }, [properties]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    actualVehicle
-      ? updateOne(currentId, { name, properties: vehicleProperties })
-      : createOne({ name, properties: vehicleProperties });
-    setName('');
-    setVehicleProperties([]);
-    setCurrentId(null);
+
+    const formData = {
+      name,
+      properties: vehicleProperties,
+    };
+
+    const errors = await validateVehicleInput(formData);
+    if (errors.length) setError(errors[0]);
+    else {
+      actualVehicle
+        ? updateOne(currentId, { name, properties: vehicleProperties })
+        : createOne({ name, properties: vehicleProperties });
+      setName('');
+      setVehicleProperties([]);
+      setCurrentId(null);
+      setError('');
+    }
   };
 
   const handleChange = e => setName(e.target.value);
@@ -68,10 +82,18 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
             isMulti
             onChange={setVehicleProperties}
             options={options}
+            placeholder={'Seleccione'}
             styles={style}
             value={vehicleProperties}
           />
         </fieldset>
+        {error && (
+          <div className='error text-danger text-center'>
+            {error.includes('category')
+              ? 'Debe seleccionar una categoría'
+              : 'El nombre no puede estar vacío'}
+          </div>
+        )}
         <div className='actions'>
           <button className='btn btn-dec' type='submit'>
             {actualVehicle ? 'Actualizar' : 'Guardar'}

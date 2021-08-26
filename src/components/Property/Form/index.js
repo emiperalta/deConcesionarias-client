@@ -4,6 +4,8 @@ import Select from 'react-select';
 import useProperty from 'hooks/useProperty';
 import useCategory from 'hooks/useCategory';
 
+import { validatePropertyInput } from 'validation/inputValidation';
+
 import style from 'utils/select-styles';
 
 import './PropertyForm.css';
@@ -11,6 +13,7 @@ import './PropertyForm.css';
 export default function PropertyForm({ currentId, setCurrentId }) {
   const [name, setName] = useState('');
   const [category, setCategory] = useState(null);
+  const [error, setError] = useState('');
 
   const { categoriesForSelect } = useCategory();
   const { createOne, properties, updateOne } = useProperty();
@@ -27,14 +30,23 @@ export default function PropertyForm({ currentId, setCurrentId }) {
     }
   }, [actualProperty]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    actualProperty
-      ? updateOne(currentId, { name, categoryId: category.value })
-      : createOne({ name, categoryId: category.value });
-    setName('');
-    setCategory(null);
-    setCurrentId(null);
+    const formData = {
+      name,
+      category,
+    };
+    const errors = await validatePropertyInput(formData);
+    if (errors.length) setError(errors[0]);
+    else {
+      actualProperty
+        ? updateOne(currentId, { name, categoryId: category.value })
+        : createOne({ name, categoryId: category.value });
+      setName('');
+      setCategory(null);
+      setCurrentId(null);
+      setError('');
+    }
   };
 
   const handleChange = e => setName(e.target.value);
@@ -64,6 +76,13 @@ export default function PropertyForm({ currentId, setCurrentId }) {
             value={category}
           />
         </fieldset>
+        {error && (
+          <div className='error text-danger text-center'>
+            {error.includes('category')
+              ? 'Debe seleccionar una categoría'
+              : 'El nombre no puede estar vacío'}
+          </div>
+        )}
         <div className='actions'>
           <button className='btn btn-dec' type='submit'>
             {actualProperty ? 'Actualizar' : 'Guardar'}
