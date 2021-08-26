@@ -12,7 +12,7 @@ export default function PropertyForm({ currentId, setCurrentId }) {
   const [name, setName] = useState('');
   const [category, setCategory] = useState(null);
 
-  const { categories } = useCategory();
+  const { categoriesForSelect } = useCategory();
   const { createOne, properties, updateOne } = useProperty();
 
   const actualProperty = currentId ? properties.find(p => p.id === currentId) : null;
@@ -57,7 +57,7 @@ export default function PropertyForm({ currentId, setCurrentId }) {
         <fieldset>
           <legend>Categoría</legend>
           <Select
-            options={categories}
+            options={categoriesForSelect}
             onChange={setCategory}
             placeholder={'Seleccione'}
             styles={style}

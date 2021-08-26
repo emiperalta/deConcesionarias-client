@@ -8,9 +8,7 @@ export default function useCategory() {
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await categoryApi.getAllCategories();
-      setCategories(
-        data.map(category => ({ value: category.id, label: category.name }))
-      );
+      setCategories(data);
     };
     fetchCategories();
   }, []);
@@ -18,5 +16,9 @@ export default function useCategory() {
   return {
     categories,
     setCategories,
+    categoriesForSelect: categories.map(category => ({
+      value: category.id,
+      label: category.name,
+    })),
   };
 }
