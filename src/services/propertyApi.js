@@ -5,6 +5,13 @@ const getAllProperties = async () => {
   return await res.json();
 };
 
+const getPropertiesToShow = async (vehicleId, categoryId) => {
+  const res = await fetch(
+    `http://localhost:5000/api/vehicle-properties?vehicleId=${vehicleId}&categoryId=${categoryId}`
+  );
+  return await res.json();
+};
+
 const getOneProperty = async id => {
   const res = await fetch(`${baseUrl}/vehicle-properties/${id}`);
   return await res.json();
@@ -46,6 +53,7 @@ const propertyApi = {
   deleteProperty,
   getAllProperties,
   getOneProperty,
+  getPropertiesToShow,
   updateProperty,
 };
 
