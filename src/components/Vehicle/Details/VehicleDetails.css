@@ -105,7 +105,7 @@
 }
 
 .h-scroll::-webkit-scrollbar {
-  height: 0.7rem;
+  height: 0.5rem;
 }
 
 .h-scroll::-webkit-scrollbar-thumb {

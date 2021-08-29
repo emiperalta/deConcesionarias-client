@@ -3,12 +3,13 @@ import { Container } from 'react-bootstrap';
 import { Link } from 'wouter';
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
 
+import propertyApi from 'services/propertyApi';
+
 import useCategory from 'hooks/useCategory';
 
 import RatingStar from 'components/RatingStar';
 
 import './VehicleDetails.css';
-import propertyApi from 'services/propertyApi';
 
 export default function VehicleDetails({ vehicle, vehicleId }) {
   const [propertiesToShow, setPropertiesToShow] = useState([]);
