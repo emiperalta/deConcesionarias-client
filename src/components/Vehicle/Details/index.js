@@ -8,30 +8,30 @@ import useCategory from 'hooks/useCategory';
 import RatingStar from 'components/RatingStar';
 
 import './VehicleDetails.css';
+import propertyApi from 'services/propertyApi';
 
 export default function VehicleDetails({ vehicle, vehicleId }) {
   const [propertiesToShow, setPropertiesToShow] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const { categories } = useCategory();
 
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/api/vehicle-properties?vehicleId=${vehicleId}&categoryId=1`
-    )
-      .then(res => res.json())
-      .then(data => setPropertiesToShow(data))
-      .catch(err => console.log(err));
+    async function getProperties() {
+      const data = await propertyApi.getPropertiesToShow(vehicleId, 1);
+      setPropertiesToShow(data);
+      setSelectedCategory(1);
+    }
+    getProperties();
   }, [vehicleId]);
 
   const handleCategoryClick = (e, categoryId) => {
-    fetch(
-      `http://localhost:5000/api/vehicle-properties?vehicleId=${vehicle.id}&categoryId=${categoryId}`
-    )
-      .then(res => res.json())
-      .then(data => {
-        setPropertiesToShow(data);
-      })
-      .catch(err => console.log(err));
+    async function getProperties() {
+      const data = await propertyApi.getPropertiesToShow(vehicleId, categoryId);
+      setPropertiesToShow(data);
+      setSelectedCategory(categoryId);
+    }
+    getProperties();
   };
 
   return (
@@ -48,7 +48,9 @@ export default function VehicleDetails({ vehicle, vehicleId }) {
               {categories.length &&
                 categories.map(cat => (
                   <div
-                    className='nav-item'
+                    className={`nav-item ${
+                      selectedCategory === cat.id ? 'selected' : ''
+                    }`}
                     key={cat.id}
                     onClick={e => handleCategoryClick(e, cat.id)}
                     title={`${cat.name}`}
