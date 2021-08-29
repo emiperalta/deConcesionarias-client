@@ -5,6 +5,8 @@ import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
 
 import useCategory from 'hooks/useCategory';
 
+import RatingStar from 'components/RatingStar';
+
 import './VehicleDetails.css';
 
 export default function VehicleDetails({ vehicle }) {
@@ -18,7 +20,6 @@ export default function VehicleDetails({ vehicle }) {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setPropertiesToShow(data);
       })
       .catch(err => console.log(err));
@@ -30,18 +31,12 @@ export default function VehicleDetails({ vehicle }) {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setPropertiesToShow(data);
       })
       .catch(err => console.log(err));
-
-    // GET propiedades del vehicleId que sean de esta categoryId
-
-    // console.log(vehicle.VehicleProperties[0].Category.id);
   };
 
   return (
-    // TODO: fix this
     <Container>
       <Container className='mt-5'>
         <div className='card'>
@@ -65,30 +60,22 @@ export default function VehicleDetails({ vehicle }) {
           </div>
         </div>
       </Container>
-
-      {/* <Container className='vehicle-details'>
-        {Object.keys(vehicle).length &&
-          vehicle.VehicleProperties.map((v, index) => (
-            <section key={v.id} className='vehicle-properties-detail'>
-              <span>{v.name}</span>
-              <span>{v.PropertyValue.value} stars</span>
-            </section>
-          ))}
-      </Container> */}
-
       <Container className='vehicle-details'>
         {propertiesToShow.length ? (
-          propertiesToShow.map((prop, index) => (
-            <section key={prop.id} className='vehicle-properties-detail'>
+          propertiesToShow.map(prop => (
+            <div key={prop.id} className='vehicle-properties-detail'>
               <span>{prop.name}</span>
-              <span>{prop.Vehicles[0].PropertyValue.value} stars</span>
-            </section>
+              <RatingStar
+                initialValue={prop.Vehicles[0].PropertyValue.value}
+                propertyId={prop.id}
+                vehicleId={vehicle.id}
+              />
+            </div>
           ))
         ) : (
           <section>¡No hay ninguna propiedad en esta categoría!</section>
         )}
       </Container>
-
       <div className='container back-arrow'>
         <Link to='/vehicles'>
           <FaRegArrowAltCircleLeft />
