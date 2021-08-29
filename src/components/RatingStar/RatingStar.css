@@ -1,0 +1,19 @@
+input[type='radio'] {
+  display: none;
+}
+
+.star-container {
+  align-items: center;
+  display: flex;
+}
+
+.star {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  transition: all 0.2s ease-in-out;
+}
+
+.star:hover {
+  transform: scaleY(1.2) !important;
+}
