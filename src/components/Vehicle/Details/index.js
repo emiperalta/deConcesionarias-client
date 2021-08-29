@@ -9,21 +9,19 @@ import RatingStar from 'components/RatingStar';
 
 import './VehicleDetails.css';
 
-export default function VehicleDetails({ vehicle }) {
+export default function VehicleDetails({ vehicle, vehicleId }) {
   const [propertiesToShow, setPropertiesToShow] = useState([]);
 
   const { categories } = useCategory();
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/vehicle-properties?vehicleId=${vehicle.id}&categoryId=1`
+      `http://localhost:5000/api/vehicle-properties?vehicleId=${vehicleId}&categoryId=1`
     )
       .then(res => res.json())
-      .then(data => {
-        setPropertiesToShow(data);
-      })
+      .then(data => setPropertiesToShow(data))
       .catch(err => console.log(err));
-  }, [vehicle.id]);
+  }, [vehicleId]);
 
   const handleCategoryClick = (e, categoryId) => {
     fetch(

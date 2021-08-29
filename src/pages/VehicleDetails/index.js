@@ -15,7 +15,7 @@ export default function VehicleDetailsPage(props) {
         <title>Detalles - deConcesionarias</title>
         <meta name='description' content='Detalles de auto' />
       </Helmet>
-      <VehicleDetails vehicle={vehicle} />
+      <VehicleDetails vehicle={vehicle} vehicleId={id} />
     </>
   );
 }
