@@ -16,7 +16,7 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
   const [name, setName] = useState('');
   const [vehicleProperties, setVehicleProperties] = useState([]);
   const [options, setOptions] = useState([]);
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
 
   const { createOne, vehicles, updateOne } = useVehicle();
 
