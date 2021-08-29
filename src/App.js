@@ -13,9 +13,9 @@ export default function App() {
     <PropertyContextProvider>
       <VehiclesContextProvider>
         <Route exact path='/' component={HomePage} />
-        <Route path='/vehicles' component={VehiclePage} />
+        <Route exact path='/vehicles' component={VehiclePage} />
         <Route exact path='/vehicles/:id' component={VehicleDetailsPage} />
-        <Route path='/properties' component={PropertyPage} />
+        <Route exact path='/properties' component={PropertyPage} />
       </VehiclesContextProvider>
     </PropertyContextProvider>
   );
