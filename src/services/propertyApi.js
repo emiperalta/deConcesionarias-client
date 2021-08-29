@@ -39,6 +39,20 @@ const updateProperty = async (id, data) => {
   return await res.json();
 };
 
+const updatePropertyValue = async (propertyId, vehicleId, ratingValue) => {
+  const res = await fetch(
+    `${baseUrl}/vehicle-properties/${propertyId}?vehicleId=${vehicleId}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ratingValue }),
+    }
+  );
+  return await res.json();
+};
+
 const deleteProperty = async id => {
   return await fetch(`${baseUrl}/vehicle-properties/${id}`, {
     method: 'DELETE',
@@ -55,6 +69,7 @@ const propertyApi = {
   getOneProperty,
   getPropertiesToShow,
   updateProperty,
+  updatePropertyValue,
 };
 
 export default propertyApi;
