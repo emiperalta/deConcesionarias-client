@@ -7,7 +7,7 @@ const getAllProperties = async () => {
 
 const getPropertiesToShow = async (vehicleId, categoryId) => {
   const res = await fetch(
-    `http://localhost:5000/api/vehicle-properties?vehicleId=${vehicleId}&categoryId=${categoryId}`
+    `${baseUrl}/vehicle-properties?vehicleId=${vehicleId}&categoryId=${categoryId}`
   );
   return await res.json();
 };
