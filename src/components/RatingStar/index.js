@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
+import propertyApi from 'services/propertyApi';
+
 import './RatingStar.css';
 
 export default function RatingStar({ initialValue, propertyId, vehicleId }) {
@@ -11,21 +13,9 @@ export default function RatingStar({ initialValue, propertyId, vehicleId }) {
     initialValue && setRating(initialValue);
   }, [initialValue]);
 
-  const handleClick = ratingValue => {
+  const handleClick = async ratingValue => {
     setRating(ratingValue);
-    fetch(
-      `http://localhost:5000/api/vehicle-properties/${propertyId}?vehicleId=${vehicleId}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ratingValue }),
-      }
-    )
-      .then(res => res.json())
-      .then(data => console.log({ data }))
-      .catch(err => console.log({ error: err.message }));
+    await propertyApi.updatePropertyValue(propertyId, vehicleId, ratingValue);
   };
 
   return (
