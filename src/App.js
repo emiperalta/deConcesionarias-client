@@ -1,4 +1,5 @@
 import { Route } from 'wouter';
+import { AnimatePresence } from 'framer-motion';
 
 import { PropertyContextProvider } from 'context/PropertyContext';
 import { VehiclesContextProvider } from 'context/VehicleContext';
@@ -10,13 +11,15 @@ import PropertyPage from 'pages/Property';
 
 export default function App() {
   return (
-    <PropertyContextProvider>
-      <VehiclesContextProvider>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/vehicles' component={VehiclePage} />
-        <Route exact path='/vehicles/:id' component={VehicleDetailsPage} />
-        <Route exact path='/properties' component={PropertyPage} />
-      </VehiclesContextProvider>
-    </PropertyContextProvider>
+    <AnimatePresence>
+      <PropertyContextProvider>
+        <VehiclesContextProvider>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/vehicles' component={VehiclePage} />
+          <Route exact path='/vehicles/:id' component={VehicleDetailsPage} />
+          <Route exact path='/properties' component={PropertyPage} />
+        </VehiclesContextProvider>
+      </PropertyContextProvider>
+    </AnimatePresence>
   );
 }
