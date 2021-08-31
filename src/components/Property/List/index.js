@@ -4,10 +4,22 @@ import { MdDelete } from 'react-icons/md';
 
 import useProperty from 'hooks/useProperty';
 
+import alertService from 'services/Alerts';
+
 import './PropertyList.css';
 
 export default function PropertyList({ properties, setCurrentId }) {
   const { deleteOne } = useProperty();
+
+  const handleDelete = async (propertyId, propertyName) => {
+    const res = await alertService.confirmDeleteAlert(propertyName);
+    if (res.isConfirmed) {
+      await deleteOne(propertyId);
+      await alertService.successAlert(
+        'Propiedad <span style="color:#f63">eliminada</span>'
+      );
+    }
+  };
 
   return (
     <div className='property-container'>
@@ -26,7 +38,7 @@ export default function PropertyList({ properties, setCurrentId }) {
                 <td>{p.name}</td>
                 <td className='property-actions'>
                   <FaEdit onClick={() => setCurrentId(p.id)} />
-                  <MdDelete onClick={() => deleteOne(p.id)} />
+                  <MdDelete onClick={() => handleDelete(p.id, p.name)} />
                 </td>
               </tr>
             ))

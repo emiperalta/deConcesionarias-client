@@ -6,10 +6,22 @@ import { ImEye } from 'react-icons/im';
 
 import useVehicle from 'hooks/useVehicle';
 
+import alertService from 'services/Alerts';
+
 import './VehicleList.css';
 
 export default function VehicleList({ setCurrentId, vehicles }) {
   const { deleteOne } = useVehicle();
+
+  const handleDelete = async (vehicleId, vehicleName) => {
+    const res = await alertService.confirmDeleteAlert(vehicleName);
+    if (res.isConfirmed) {
+      await deleteOne(vehicleId);
+      await alertService.successAlert(
+        'Vehículo <span style="color:#f63">eliminado</span>'
+      );
+    }
+  };
 
   return (
     <div className='vehicle-container'>
@@ -28,7 +40,7 @@ export default function VehicleList({ setCurrentId, vehicles }) {
                 <td>{v.name}</td>
                 <td className='vehicle-actions'>
                   <FaEdit onClick={() => setCurrentId(v.id)} />
-                  <MdDelete onClick={() => deleteOne(v.id)} />
+                  <MdDelete onClick={() => handleDelete(v.id, v.name)} />
                   <Link to={`/vehicles/${v.id}`}>
                     <ImEye />
                   </Link>

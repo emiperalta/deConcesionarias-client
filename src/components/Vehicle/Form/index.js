@@ -4,6 +4,8 @@ import makeAnimated from 'react-select/animated';
 
 import useVehicle from 'hooks/useVehicle';
 
+import alertService from 'services/Alerts';
+
 import { validateVehicleInput } from 'validation/inputValidation';
 
 import style from 'utils/select-styles';
@@ -39,23 +41,22 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
-    const formData = {
-      name,
-      properties: vehicleProperties,
-    };
-
+    const formData = { name, properties: vehicleProperties };
     const errors = await validateVehicleInput(formData);
-    if (errors.length) setError(errors[0]);
-    else {
-      actualVehicle
-        ? updateOne(currentId, { name, properties: vehicleProperties })
-        : createOne({ name, properties: vehicleProperties });
-      setName('');
-      setVehicleProperties([]);
-      setCurrentId(null);
-      setError('');
+    if (errors.length) return setError(errors[0]);
+    if (actualVehicle) {
+      updateOne(currentId, { name, properties: vehicleProperties });
+      alertService.successAlert(
+        'Vehículo <span class="text-info">actualizado</span>'
+      );
+    } else {
+      createOne({ name, properties: vehicleProperties });
+      alertService.successAlert('Vehículo <span class="text-success">creado</span>');
     }
+    setName('');
+    setVehicleProperties([]);
+    setCurrentId(null);
+    setError('');
   };
 
   const handleChange = e => setName(e.target.value);

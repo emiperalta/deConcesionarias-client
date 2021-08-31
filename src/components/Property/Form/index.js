@@ -4,6 +4,8 @@ import Select from 'react-select';
 import useProperty from 'hooks/useProperty';
 import useCategory from 'hooks/useCategory';
 
+import alertService from 'services/Alerts';
+
 import { validatePropertyInput } from 'validation/inputValidation';
 
 import style from 'utils/select-styles';
@@ -32,21 +34,24 @@ export default function PropertyForm({ currentId, setCurrentId }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const formData = {
-      name,
-      category,
-    };
+    const formData = { name, category };
     const errors = await validatePropertyInput(formData);
-    if (errors.length) setError(errors[0]);
-    else {
-      actualProperty
-        ? updateOne(currentId, { name, categoryId: category.value })
-        : createOne({ name, categoryId: category.value });
-      setName('');
-      setCategory(null);
-      setCurrentId(null);
-      setError('');
+    if (errors.length) return setError(errors[0]);
+    if (actualProperty) {
+      updateOne(currentId, { name, categoryId: category.value });
+      alertService.successAlert(
+        'Propiedad <span class="text-info">actualizada</span>'
+      );
+    } else {
+      createOne({ name, categoryId: category.value });
+      alertService.successAlert(
+        'Propiedad <span class="text-success">creada</span>'
+      );
     }
+    setName('');
+    setCategory(null);
+    setCurrentId(null);
+    setError('');
   };
 
   const handleChange = e => setName(e.target.value);
