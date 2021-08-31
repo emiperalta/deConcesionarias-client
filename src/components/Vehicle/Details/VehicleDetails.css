@@ -72,7 +72,8 @@
   margin: 0;
   padding: 10px;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: background-color 0.3s ease, border-radius 0.3s ease,
+    border-bottom 0.3s ease;
   width: 200px;
 }
 .nav-item:hover {

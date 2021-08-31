@@ -47,17 +47,14 @@ legend {
   width: auto !important;
 }
 
-button {
-  font-size: 1.2rem !important;
-  margin-top: 1rem !important;
-  padding: 10px 15px !important;
-  width: 99%;
-}
-
 .btn-dec {
   background-color: #f63 !important;
   color: #fff !important;
+  font-size: 1.2rem !important;
+  margin-top: 1rem !important;
+  padding: 10px 15px !important;
   transition: background-color 0.3s ease;
+  width: 99%;
 }
 .btn-dec:hover {
   background-color: #ff7e53 !important;

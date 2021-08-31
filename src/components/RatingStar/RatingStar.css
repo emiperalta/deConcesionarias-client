@@ -11,7 +11,7 @@ input[type='radio'] {
   align-items: center;
   cursor: pointer;
   display: flex;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .star:hover {
