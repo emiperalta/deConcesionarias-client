@@ -1,7 +1,10 @@
 import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
 
 import useVehicle from 'hooks/useVehicle';
 import useProperty from 'hooks/useProperty';
+
+import { pageAnimation, transition } from 'utils/animations';
 
 import VehicleForm from 'components/Vehicle/Form';
 import VehicleList from 'components/Vehicle/List';
@@ -11,7 +14,13 @@ export default function VehiclePage() {
   const { properties } = useProperty();
 
   return (
-    <>
+    <motion.div
+      animate='in'
+      exit='out'
+      initial='out'
+      transition={transition}
+      variants={pageAnimation}
+    >
       <Helmet>
         <title>Vehículos - deConcesionarias</title>
         <meta name='description' content='vehículos deConcesionarias' />
@@ -22,6 +31,6 @@ export default function VehiclePage() {
         setCurrentId={setCurrentId}
       />
       <VehicleList vehicles={vehicles} setCurrentId={setCurrentId} />
-    </>
+    </motion.div>
   );
 }
