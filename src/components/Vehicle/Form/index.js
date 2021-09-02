@@ -20,7 +20,7 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
   const [options, setOptions] = useState([]);
   const [error, setError] = useState('');
 
-  const { createOne, vehicles, updateOne } = useVehicle();
+  const { createOne, deletePropertyFromVehicle, vehicles, updateOne } = useVehicle();
 
   const actualVehicle = currentId ? vehicles.find(v => v.id === currentId) : null;
 
@@ -60,6 +60,12 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
   };
 
   const handleChange = e => setName(e.target.value);
+  const handleSelect = async (e, { removedValue }) => {
+    setVehicleProperties(e);
+    if (actualVehicle && removedValue) {
+      await deletePropertyFromVehicle(actualVehicle.id, removedValue.value);
+    }
+  };
 
   return (
     <div className='vehicle-form'>
@@ -81,7 +87,7 @@ export default function VehicleForm({ currentId, properties, setCurrentId }) {
           <Select
             components={animatedComponents}
             isMulti
-            onChange={setVehicleProperties}
+            onChange={handleSelect}
             options={options}
             placeholder={'Seleccione'}
             styles={style}
