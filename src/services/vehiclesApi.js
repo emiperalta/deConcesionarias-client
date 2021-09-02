@@ -41,9 +41,19 @@ const deleteVehicle = async id => {
   });
 };
 
+const deletePropertyFromVehicle = async (id, propertyId) => {
+  return await fetch(`${baseUrl}/vehicles/${id}?propertyId=${propertyId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 const vehicleApi = {
   createVehicle,
   deleteVehicle,
+  deletePropertyFromVehicle,
   getAllVehicles,
   getOneVehicle,
   updateVehicle,
