@@ -31,10 +31,15 @@ export default function useVehicle() {
     setVehicles([...vehicles.filter(v => v.id !== id)]);
   };
 
+  const deletePropertyFromVehicle = async (id, propertyId) => {
+    await vehicleApi.deletePropertyFromVehicle(id, propertyId);
+  };
+
   return {
     createOne,
     currentId,
     deleteOne,
+    deletePropertyFromVehicle,
     setCurrentId,
     updateOne,
     vehicles,
